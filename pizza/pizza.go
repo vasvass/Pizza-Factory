@@ -12,6 +12,7 @@ type Pizza struct {
 	Dough    Dough
 	Sauce    Sauce
 	Toppings Toppings
+	IsCooked bool
 }
 
 type Sauce struct {
