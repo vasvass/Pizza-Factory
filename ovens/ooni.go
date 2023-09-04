@@ -7,7 +7,8 @@ import (
 	timeUtils "github.com/vasvass/Pizza-Factory/utils"
 )
 
-const kFactor = 27000
+// kFactor is the constant that defines the relationship between temperature and cooking time
+const kFactorOoni = 27000
 
 type Ooni struct {
 	Temperature     int
@@ -25,5 +26,5 @@ func (o Ooni) CookingTime() timeUtils.Seconds {
 	if o.Temperature == 0 {
 		return timeUtils.Seconds(math.MaxInt)
 	}
-	return timeUtils.Seconds(kFactor / o.Temperature)
+	return timeUtils.Seconds(kFactorOoni / o.Temperature)
 }

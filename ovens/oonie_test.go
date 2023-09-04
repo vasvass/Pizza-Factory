@@ -33,6 +33,24 @@ func TestOoniCookingTime(t *testing.T) {
 			temperatureUnit: ovens.TemperatureUnitCelsius,
 			expectedTime:    60,
 		},
+		{
+			desc:            "400 degrees celcius should take 53 seconds",
+			temperature:     400,
+			temperatureUnit: ovens.TemperatureUnitCelsius,
+			expectedTime:    67,
+		},
+		{
+			desc:            "300 degrees celcius should take 40 seconds",
+			temperature:     300,
+			temperatureUnit: ovens.TemperatureUnitCelsius,
+			expectedTime:    90,
+		},
+		{
+			desc:            "500 degrees celcius should take  seconds",
+			temperature:     500,
+			temperatureUnit: ovens.TemperatureUnitCelsius,
+			expectedTime:    54,
+		},
 	}
 
 	for _, tC := range testCases {
