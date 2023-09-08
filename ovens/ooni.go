@@ -2,6 +2,7 @@ package ovens
 
 import (
 	"math"
+	"time"
 
 	"github.com/vasvass/Pizza-Factory/pizza"
 	timeUtils "github.com/vasvass/Pizza-Factory/utils"
@@ -13,11 +14,13 @@ const kFactorOoni = 27000
 type Ooni struct {
 	Temperature     int
 	TemperatureUnit TemperatureUnit
+
+	Sleeper Sleeper
 }
 
 func (o Ooni) Cook(p pizza.Pizza) pizza.Pizza {
 	p.IsCooked = true
-	o.CookingTime()
+	o.Sleeper.Sleep(time.Duration(o.CookingTime().ToNanoSeconds()))
 	return p
 }
 

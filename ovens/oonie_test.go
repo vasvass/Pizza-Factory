@@ -2,21 +2,28 @@ package ovens_test
 
 import (
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/vasvass/Pizza-Factory/ovens"
+	"github.com/vasvass/Pizza-Factory/ovens/mocks"
 	"github.com/vasvass/Pizza-Factory/pizza"
 	timeUtils "github.com/vasvass/Pizza-Factory/utils"
 )
 
 func TestOoniCook(t *testing.T) {
 	t.Run("cooks the pizza", func(t *testing.T) {
-		o := ovens.Ooni{}
+		mockSleeper := &mocks.SleeperMock{}
+		o := ovens.Ooni{
+			Temperature: 400,
+			Sleeper:     mockSleeper,
+		}
 		p := pizza.Pizza{}
 
 		cookedPizza := o.Cook(p)
 
 		assert.True(t, cookedPizza.IsCooked)
+		assert.Equal(t, time.Duration(timeUtils.Seconds(67).ToNanoSeconds()), mockSleeper.TimeSlept)
 	})
 }
 

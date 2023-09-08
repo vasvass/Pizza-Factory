@@ -2,6 +2,7 @@ package ovens
 
 import (
 	"math"
+	"time"
 
 	"github.com/vasvass/Pizza-Factory/pizza"
 	timeUtils "github.com/vasvass/Pizza-Factory/utils"
@@ -13,10 +14,13 @@ const kFactorBrick = 32000
 type Brick struct {
 	Temperature     int
 	TemperatureUnit TemperatureUnit
+
+	Sleeper Sleeper
 }
 
 func (b Brick) Cook(p pizza.Pizza) pizza.Pizza {
 	p.IsCooked = true
+	b.Sleeper.Sleep(time.Duration(b.CookingTime().ToNanoSeconds()))
 	return p
 }
 
